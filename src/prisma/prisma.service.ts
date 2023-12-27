@@ -14,4 +14,7 @@ export class PrismaService extends PrismaClient {
     });
     console.log("db connected", config.get("DATABASE_URL"));
   }
+  cleanDb() {
+    this.$transaction([this.user.deleteMany(), this.bookmark.deleteMany()]);
+  }
 }

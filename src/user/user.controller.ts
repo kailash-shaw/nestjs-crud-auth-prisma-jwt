@@ -8,8 +8,8 @@ import {
 } from "@nestjs/common";
 import { User } from "@prisma/client";
 import { Request } from "express";
-import { GetUser } from "src/auth/decorator";
-import { JwtGuard } from "src/auth/guard/jwt.guard";
+import { GetUser } from "../auth/decorator";
+import { JwtGuard } from "../auth/guard/jwt.guard";
 
 /***:- guard for all route means controller level -:***/
 //@UseGuards(JwtGuard)
