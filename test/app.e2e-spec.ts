@@ -7,6 +7,7 @@ import { AuthDto } from "../src/auth/dto/index.dto";
 import { EditUserDto } from "../src/user/dto/edit-user.dto";
 
 import * as pactum from "pactum";
+import { CreateBookmarkDto, EditBookmarkDto } from "src/bookmark/dto";
 
 describe("App e2e", () => {
   let app: INestApplication;
@@ -139,7 +140,6 @@ describe("App e2e", () => {
           .withHeaders({
             Authorization: "Bearer $S{userAt}",
           })
-          .inspect()
           .withBody(dto)
           .expectStatus(200)
           .expectBodyContains(dto.firstName)
@@ -150,7 +150,7 @@ describe("App e2e", () => {
 
   /***:- Bookmarks testing -:***/
 
-  /* describe("Bookmarks", () => {
+  describe("Bookmarks", () => {
     describe("Get empty bookmarks", () => {
       it("should get bookmarks", () => {
         return pactum
@@ -254,5 +254,5 @@ describe("App e2e", () => {
           .expectJsonLength(0);
       });
     });
-  });*/
+  });
 });
