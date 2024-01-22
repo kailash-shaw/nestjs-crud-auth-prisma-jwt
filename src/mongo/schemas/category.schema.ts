@@ -1,0 +1,24 @@
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+
+export enum Status {
+  active = "Active",
+  inactive = "Inactive",
+  deleted = "Delete",
+}
+
+@Schema({
+  timestamps: true,
+})
+export class Category extends Document {
+  @Prop()
+  title: string;
+
+  @Prop()
+  description: string;
+
+  @Prop()
+  status: Status;
+}
+
+export const CategorySchema = SchemaFactory.createForClass(Category);

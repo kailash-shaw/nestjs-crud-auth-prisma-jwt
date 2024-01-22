@@ -1,19 +1,29 @@
 import { Module } from "@nestjs/common";
-import { AuthModule } from "./auth/auth.module";
-import { UserModule } from "./user/user.module";
-import { BookmarkModule } from "./bookmark/bookmark.module";
-import { PrismaModule } from "./prisma/prisma.module";
 import { ConfigModule } from "@nestjs/config";
+
+/***:- DataBase Connection -:***/
+import { PrismaModule } from "./prisma/prisma.module";
+import { MongooseModule } from "@nestjs/mongoose";
+
+import { AuthModule } from "./mysql/auth/auth.module";
+import { UserModule } from "./mysql/user/user.module";
+import { BookmarkModule } from "./mysql/bookmark/bookmark.module";
+
+import { ProductModule } from "./mongo/product/product.module";
+import { CategoryModule } from "./mongo/category/category.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    PrismaModule,
+    MongooseModule.forRoot(process.env.MONGO_DATABASE_URL),
     AuthModule,
     UserModule,
     BookmarkModule,
-    PrismaModule,
+    ProductModule,
+    CategoryModule,
   ],
 })
 export class AppModule {}

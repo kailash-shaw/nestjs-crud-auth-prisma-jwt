@@ -10,8 +10,8 @@ import {
 } from "@nestjs/common";
 import { User } from "@prisma/client";
 import { Request } from "express";
-import { GetUser } from "../auth/decorator";
-import { JwtGuard } from "../auth/guard/jwt.guard";
+import { GetUser } from "../../decorator/index";
+import { JwtGuard } from "../../guard/index";
 import { EditUserDto } from "./dto/edit-user.dto";
 import { UserService } from "./user.service";
 
