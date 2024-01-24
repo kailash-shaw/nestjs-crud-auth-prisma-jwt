@@ -11,6 +11,7 @@ import { BookmarkModule } from "./mysql/bookmark/bookmark.module";
 
 import { ProductModule } from "./mongo/product/product.module";
 import { CategoryModule } from "./mongo/category/category.module";
+import { BookModule } from './mongo/book/book.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CategoryModule } from "./mongo/category/category.module";
     BookmarkModule,
     ProductModule,
     CategoryModule,
+    BookModule,
   ],
 })
 export class AppModule {}
