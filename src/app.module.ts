@@ -11,7 +11,9 @@ import { BookmarkModule } from "./mysql/bookmark/bookmark.module";
 
 import { ProductModule } from "./mongo/product/product.module";
 import { CategoryModule } from "./mongo/category/category.module";
-import { BookModule } from './mongo/book/book.module';
+import { BookModule } from "./mongo/book/book.module";
+import { FileUploadModule } from "./mysql/file-upload/file-upload.module";
+import { MulterModule } from "@nestjs/platform-express";
 
 @Module({
   imports: [
@@ -26,6 +28,10 @@ import { BookModule } from './mongo/book/book.module';
     ProductModule,
     CategoryModule,
     BookModule,
+    FileUploadModule,
+    MulterModule.register({
+      dest: "./uploads",
+    }),
   ],
 })
 export class AppModule {}
