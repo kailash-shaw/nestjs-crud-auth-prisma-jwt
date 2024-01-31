@@ -15,14 +15,17 @@ import {
 
 import { JwtGuard } from "../../guard/index";
 import { CategoryService } from "./category.service";
-import { CreateCategoryDto, EditCategoryDto } from "./dto";
+import { CreateCategoryDto, EditCategoryDto, Status } from "./dto";
 
 import { Query as ExpressQuery } from "express-serve-static-core";
 import { Category } from "../schemas/index.schema";
 import { ParseObjectIdPipePipe } from "../../pipes/index.pipes";
 
 import { ObjectId } from "mongoose";
+import { ApiBearerAuth, ApiQuery, ApiTags } from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags("Category")
 @UseGuards(JwtGuard)
 @Controller("category")
 export class CategoryController {
@@ -40,6 +43,7 @@ export class CategoryController {
     return this.CategoryService.getCategoryById(categoryId);
   }
 
+  @ApiQuery({ name: "status", enum: Status })
   @Post()
   createCategory(@Body() dto: CreateCategoryDto) {
     return this.CategoryService.createCategory(dto);

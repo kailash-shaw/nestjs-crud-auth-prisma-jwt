@@ -15,7 +15,17 @@ import { JwtGuard } from "../../guard/index";
 import { EditUserDto } from "./dto/edit-user.dto";
 import { UserService } from "./user.service";
 
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
+
 /***:- guard for all route means controller level -:***/
+@ApiBearerAuth()
+@ApiTags("User")
 @UseGuards(JwtGuard)
 @Controller("users")
 export class UserController {
@@ -27,6 +37,16 @@ export class UserController {
   //   @HttpCode(HttpStatus.OK)
 
   /***:- status code by number -:***/
+  @ApiOperation({
+    summary: "user details",
+    description: "Get logged in user information using access token.",
+  })
+  @ApiResponse({ status: 403, description: "Forbidden." })
+  @ApiResponse({
+    status: 200,
+    description: "The found record",
+    type: EditUserDto,
+  })
   @HttpCode(200)
   @Get("me")
 

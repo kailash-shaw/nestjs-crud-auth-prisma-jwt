@@ -3,14 +3,23 @@ import {
   Controller,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { ApiConsumes, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { diskStorage } from "multer";
 import { extname } from "path";
-
+import { JwtGuard } from "../../guard/index";
+@ApiTags("File Uploads")
+@ApiConsumes("multipart/form-data")
+@UseGuards(JwtGuard)
 @Controller("file-upload")
 export class FileUploadController {
+  @ApiOperation({
+    summary: "File-Upload",
+    description: "file upload by multer.",
+  })
   @Post("upload")
   @UseInterceptors(
     FileInterceptor("file", {

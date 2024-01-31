@@ -18,7 +18,10 @@ import { Book } from "../schemas/index.schema";
 
 import { Query as ExpressQuery } from "express-serve-static-core";
 import { JwtGuard } from "../../guard/index";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags("Books")
 @Controller("books")
 export class BookController {
   constructor(private bookService: BookService) {}

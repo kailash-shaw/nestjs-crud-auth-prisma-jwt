@@ -1,4 +1,7 @@
-import { Controller } from '@nestjs/common';
+import { Controller } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
-@Controller('product')
+@ApiBearerAuth()
+@ApiTags("Products")
+@Controller("product")
 export class ProductController {}
